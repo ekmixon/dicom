@@ -27,7 +27,7 @@ def list_tags() -> List[Tag]:
             ok = False
             continue
 
-        vr=m.group(3).upper()
+        vr = m[3].upper()
         if vr == "XS":
             # Its generally safe to treat XS as unsigned.  See
             # https://github.com/dgobbi/vtk-dicom/issues/38 for
@@ -38,11 +38,7 @@ def list_tags() -> List[Tag]:
 	    # this crap defined in the standard??
             vr = "OW"
 
-        tag = Tag(group=m.group(1),
-                  elem=m.group(2),
-                  vr=vr,
-                  name=m.group(4),
-                  vm=m.group(5))
+        tag = Tag(group=m[1], elem=m[2], vr=vr, name=m[4], vm=m[5])
 
 
         if not re.match('^[0-9A-Fa-f]+$', tag.group) or not re.match('^[0-9A-Fa-f]+$', tag.elem):
